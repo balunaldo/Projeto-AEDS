@@ -5,7 +5,7 @@ void inicializar(TConj* pA){
     pA->n = 0;           
     pA->elementos = (int*) malloc(pA->capacidade * sizeof(int));
     if (pA->elementos == NULL) {
-        printf("Erro: Falha na alocação de memória (inicializar)!\n");
+        printf("Erro!\n");
         exit(1); 
     }
 }
@@ -130,7 +130,7 @@ int comparar(TConj A, TConj B){
 }
 
 void imprimir(TConj A){
-    printf("Conjunto %d %d): {", A.n, A.capacidade);
+    printf("Conjunto %d %d: {", A.n, A.capacidade);
     int i;
     for (i = 0; i < A.n; i++) {
         printf("%d", A.elementos[i]); //imprimir elem
@@ -138,7 +138,6 @@ void imprimir(TConj A){
             printf(", ");
         }
     }
-
     printf("} \n");
 }
 
@@ -181,7 +180,7 @@ TConj subtrair(TConj A, TConj B){
     return C;
 }
 
-TConj num2conjJogo(int n, int tam){
+TConj numConjJogo(int n, int tam){
     TConj C;
     inicializar(&C);
 

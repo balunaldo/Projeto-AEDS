@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <windows.h>
 #include "TConj.h"
 
 int main() {
     TConj A, B, C, D;
     int num, i = 0;
     setlocale(LC_ALL, "Portuguese");
+    SetConsoleOutputCP(1252);
     inicializar(&A);
     srand(42);//n° de aleatórios
 

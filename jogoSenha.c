@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <windows.h>
 #include <time.h>
 #include "TConj.h"
 
 int main(){
     setlocale(LC_ALL, "Portuguese");
+    SetConsoleOutputCP(1252);
     srand(time(NULL));
 
     TConj senhaGerada;
@@ -13,9 +15,9 @@ int main(){
 
     printf("Jogo da Senha\n");
     printf("Níveis: \n");
-    printf("1. Fácil (3 numeros)\n");
-    printf("2. Difícil (4 numeros)\n");
-    printf("3. Nivel de teste (4 numeros, senha visível)\n");
+    printf("1. Facil (3 numeros)\n");
+    printf("2. Dificil (4 numeros)\n");
+    printf("3. Nivel de teste (4 numeros, senha visivel)\n");
     
     printf("Escolha o nível desejado: ");
     scanf("%d", &nvl);
@@ -50,7 +52,7 @@ int main(){
         printf("\nTentativa %d -> Digite seu palpite: ", tent + 1);
         scanf("%d", &numTent);
 
-        TConj palpite = num2conjJogo(numTent, tamanhoSenha);
+        TConj palpite = numConjJogo(numTent, tamanhoSenha);
 
         int posicaoCorreta = 0;
         for(int i = 0; i<tamanhoSenha; i++){

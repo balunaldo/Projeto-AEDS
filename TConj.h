@@ -32,4 +32,6 @@ void imprimir(TConj A);
 TConj uniao(TConj A, TConj B);
 TConj inter(TConj A, TConj B);
 TConj subtrair(TConj A, TConj B);
+
+TConj numConjJogo(int n, int tam);
 #endif
