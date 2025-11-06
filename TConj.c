@@ -180,3 +180,21 @@ TConj subtrair(TConj A, TConj B){
     }
     return C;
 }
+
+TConj num2conjJogo(int n, int tam){
+    TConj C;
+    inicializar(&C);
+
+    if(tam == 3){
+        inserir_elemento(&C, n/100);
+        inserir_elemento(&C, (n/10)%10);
+        inserir_elemento(&C, n%10);
+    }else if(tam == 4){
+        inserir_elemento(&C, n/1000);
+        inserir_elemento(&C, (n/100)%10);
+        inserir_elemento(&C, (n/10)%10);
+        inserir_elemento(&C, n%10);       
+    }
+
+    return C;
+}
