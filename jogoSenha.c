@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include <windows.h>
 #include <time.h>
 #include "TConj.h"
 
 int main(){
     setlocale(LC_ALL, "Portuguese");
-    SetConsoleOutputCP(1252);
     srand(time(NULL));
 
     TConj senhaGerada;
@@ -40,7 +38,7 @@ int main(){
             imprimir(senhaGerada);
             break;
         default:
-            printf("Nível inválido! Encerrando o jogo.\n");
+            printf("Nível invalido! Encerrando o jogo.\n");
             return 0;
     }
 
@@ -71,15 +69,15 @@ int main(){
             liberar_memoria(&palpite);
             break;
         }
-        printf("Posição correta(s): %d, Posição errada(s): %d\n", posicaoCorreta, posicaoErrada);
+        printf("Posicao correta(s): %d, Posicao errada(s): %d\n", posicaoCorreta, posicaoErrada);
         liberar_memoria(&palpite);
         tent++;
     }
 
     if(acerto){
-        printf("\nParabéns, você acertou %d tentativas!\n", tent + 1);
+        printf("\nParabens, você acertou %d tentativas!\n", tent + 1);
     }else{
-        printf("\nFim de jogo! Você não conseguiu adivinhar a senha.\n");
+        printf("\nFim de jogo! Você nao adivinhou a senha.\n");
         printf("A senha era: ");
         imprimir(senhaGerada);
     }
