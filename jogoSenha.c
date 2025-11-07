@@ -12,12 +12,12 @@ int main(){
     int nvl, maxTentativas, tamanhoSenha;
 
     printf("Jogo da Senha\n");
-    printf("Níveis: \n");
+    printf("Niveis: \n");
     printf("1. Facil (3 numeros)\n");
     printf("2. Dificil (4 numeros)\n");
     printf("3. Nivel de teste (4 numeros, senha visivel)\n");
     
-    printf("Escolha o nível desejado: ");
+    printf("Escolha o nivel desejado: ");
     scanf("%d", &nvl);
     printf("Digite o número máximo de tentativas: ");
     scanf("%d", &maxTentativas);
@@ -38,7 +38,7 @@ int main(){
             imprimir(senhaGerada);
             break;
         default:
-            printf("Nível invalido! Encerrando o jogo.\n");
+            printf("Nivel invalido! Encerrando o jogo.\n");
             return 0;
     }
 
