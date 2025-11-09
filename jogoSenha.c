@@ -25,7 +25,7 @@ int main(){
     switch(nvl){
         case 1:
             tamanhoSenha = 3;
-            senhaGerada = gerar_conjunto(tamanhoSenha);
+            senhaGerada = gerar_conjunto(tamanhoSenha); //utilizar o gerarconjunto pra fazer a senha
             break;
         case 2:
             tamanhoSenha = 4;
@@ -38,7 +38,7 @@ int main(){
             imprimir(senhaGerada);
             break;
         default:
-            printf("Nivel invalido! Encerrando o jogo.\n");
+            printf("Nivel invalido! Encerrando o jogo.\n"); //encerrar se o valor for diferente
             return 0;
     }
 
@@ -53,20 +53,20 @@ int main(){
         TConj palpite = numConjJogo(numTent, tamanhoSenha);
 
         int posicaoCorreta = 0;
-        for(int i = 0; i<tamanhoSenha; i++){
+        for(int i = 0; i<tamanhoSenha; i++){ //verificar posicoes corretas
             int digSenha, digPalpite;
             get_elemento(senhaGerada, i, &digSenha);
-            get_elemento(palpite, i, &digPalpite);
+            get_elemento(palpite, i, &digPalpite); //pegar o elemento do palpite na posicao
             if(digSenha == digPalpite){
-                posicaoCorreta++;
+                posicaoCorreta++; //incrementar se estiver na posicao correta
             }            
         }
         TConj erros = inter(senhaGerada, palpite);
         int posicaoErrada = erros.n - posicaoCorreta;
         liberar_memoria(&erros);
-        if(posicaoCorreta == tamanhoSenha){
+        if(posicaoCorreta == tamanhoSenha){ //verificar se acertou todas as posicoes
             acerto = 1;
-            liberar_memoria(&palpite);
+            liberar_memoria(&palpite); 
             break;
         }
         printf("Posicao correta(s): %d, Posicao errada(s): %d\n", posicaoCorreta, posicaoErrada);
@@ -81,6 +81,6 @@ int main(){
         printf("A senha era: ");
         imprimir(senhaGerada);
     }
-    liberar_memoria(&senhaGerada);
+    liberar_memoria(&senhaGerada); //liberar a memoria da senha gerada
     return 0;
 }

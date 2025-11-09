@@ -11,7 +11,6 @@ typedef struct {
 }TConj;
 
 //tconj.h vai declarar as funções, basicamente nada além
-
 void inicializar(TConj* pA);
 void realocar_memoria(TConj* pA);
 void liberar_memoria(TConj* pA);

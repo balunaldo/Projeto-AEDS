@@ -3,7 +3,7 @@
 void inicializar(TConj* pA){
     pA->capacidade = 10;
     pA->n = 0;           
-    pA->elementos = (int*) malloc(pA->capacidade * sizeof(int));
+    pA->elementos = (int*) malloc(pA->capacidade * sizeof(int)); //alocar memória
     if (pA->elementos == NULL) {
         printf("Erro!\n");
         exit(1); 
@@ -11,8 +11,8 @@ void inicializar(TConj* pA){
 }
 
 void realocar_memoria(TConj* pA){
-    int nova_capacidade = pA->capacidade + 10;
-    int* novos_elementos = (int*) realloc(pA->elementos, nova_capacidade * sizeof(int));
+    int nova_capacidade = pA->capacidade + 10; //aumentar capacidade em 10
+    int* novos_elementos = (int*) realloc(pA->elementos, nova_capacidade * sizeof(int)); //realocar memória pro tamanho necessario
     if (novos_elementos == NULL) {
         printf("Erro: Falha na realocação de memória!\n");
         exit(1);
@@ -24,7 +24,7 @@ void realocar_memoria(TConj* pA){
 void liberar_memoria(TConj* pA){
     if(pA->elementos != NULL){
         free(pA->elementos);   
-        pA->elementos = NULL; 
+        pA->elementos = NULL;
     }
     pA->n = 0;
     pA->capacidade = 0;
@@ -40,7 +40,7 @@ int testar_elemento(TConj A, int elem){
     return -1;
 }
 
-int inserir_elemento(TConj* pA, int elem){
+int inserir_elemento(TConj* pA, int elem){ //inserir elemento no conjunto
     if(testar_elemento(*pA, elem) != -1){
         return 0; //falha = 0
     }else if (pA->n == pA->capacidade) {
@@ -52,7 +52,7 @@ int inserir_elemento(TConj* pA, int elem){
 }
 
 int remover_elemento(TConj* pA, int elem){
-    int posicao = testar_elemento(*pA, elem);
+    int posicao = testar_elemento(*pA, elem); //pos vai receber a posicao do elem
     if(posicao == -1){
         return 0;
     }
@@ -83,7 +83,7 @@ int get_elemento(TConj A, int posicao, int* pelem){
 TConj gerar_conjunto(int n){
     TConj C;
     inicializar(&C);
-    do{
+    do{ //gerar elem aleatorios até o valor n
         int elem_aleatorio = rand() % 10; 
         inserir_elemento(&C, elem_aleatorio);
     }while(C.n<n);
@@ -101,17 +101,17 @@ TConj num2conj(int n){
     }
     while(n > 0){
         int digito = n % 10; 
-        inserir_elemento(&C, digito);
+        inserir_elemento(&C, digito); //enqt houver digitos inserir no conjunto
         n = n/10; 
     }
     return C;
 }
 
-int conj2num(TConj A){
+int conj2num(TConj A){ //converter conjunto em número 
     int num_final = 0;
     int i;
-    for (i = 0; i < A.n; i++) {
-        num_final = num_final * 10 + A.elementos[i]; //construir número
+    for (i = 0; i < A.n; i++) { //for para cada elemento do conjunto e construir número
+        num_final = num_final * 10 + A.elementos[i];
     }
     return num_final;
 }
@@ -133,7 +133,7 @@ void imprimir(TConj A){
     printf("Conjunto %d %d: {", A.n, A.capacidade);
     int i;
     for (i = 0; i < A.n; i++) {
-        printf("%d", A.elementos[i]); //imprimir elem
+        printf("%d", A.elementos[i]); //imprimir elem do conjunto na pos i
         if (i < A.n - 1) {
             printf(", ");
         }
@@ -141,20 +141,19 @@ void imprimir(TConj A){
     printf("} \n");
 }
 
-TConj uniao(TConj A, TConj B){
+TConj uniao(TConj A, TConj B){ //juntar dois conjuntos e retornar o resultado numa variavel C
     TConj C;
     inicializar(&C);
     int i;
-    for (i = 0; i < A.n; i++) {
+    for (i = 0; i < A.n; i++) {//for para inserir elem de A e B em C
         inserir_elemento(&C, A.elementos[i]);
     }
     for (i = 0; i < B.n; i++) {
         inserir_elemento(&C, B.elementos[i]);
     }
-    //junta os conjuntos A/B e retorna C
     return C; 
 }
-TConj inter(TConj A, TConj B){
+TConj inter(TConj A, TConj B){ //mostrar os elem comuns entre os 2 conjuntos
     TConj C;
     inicializar(&C);
     int i = 0;
@@ -167,7 +166,7 @@ TConj inter(TConj A, TConj B){
     return C;
 }
 
-TConj subtrair(TConj A, TConj B){
+TConj subtrair(TConj A, TConj B){ //tirar de A os elem presentes em B tbm
     TConj C;
     inicializar(&C);
     int i = 0;
@@ -180,15 +179,15 @@ TConj subtrair(TConj A, TConj B){
     return C;
 }
 
-TConj numConjJogo(int n, int tam){
+TConj numConjJogo(int n, int tam){ //função do jogo q converte o n° do palpite em conjunto
     TConj C;
     inicializar(&C);
 
-    if(tam == 3){
+    if(tam == 3){//inserir os digitos de acordo com o tamanho
         inserir_elemento(&C, n/100);
         inserir_elemento(&C, (n/10)%10);
         inserir_elemento(&C, n%10);
-    }else if(tam == 4){
+    }else if(tam == 4){//
         inserir_elemento(&C, n/1000);
         inserir_elemento(&C, (n/100)%10);
         inserir_elemento(&C, (n/10)%10);
